@@ -1,0 +1,1 @@
+XPATH_POST_LINK = '//a[@class="cs-news__link inverse-color--black-4a"]/@href'
