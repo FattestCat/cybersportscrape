@@ -1,3 +1,5 @@
 XPATH_POST_LINK = '//a[@class="cs-news__link inverse-color--black-4a"]/@href'
 XPATH_POST_TITLE = '//h1[@itemprop="headline"]/text()'
 XPATH_POST_DATE = '//time[@itemprop="datePublished"]/@datetime'
+XPATH_POST_CONTENT = '//div[@class="typography js-mediator-article"]/p//text()'
+XPATH_POST_TAGS = '//div[@class="article__tags"]/span//text()'

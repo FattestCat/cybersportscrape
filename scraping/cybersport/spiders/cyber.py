@@ -47,5 +47,7 @@ class Cyber(Spider):
         item_loader = ItemLoader(item=Post(), response=response)
         item_loader.add_xpath('title', XPATH_POST_TITLE)
         item_loader.add_xpath('date', XPATH_POST_DATE)
+        item_loader.add_xpath('content', XPATH_POST_CONTENT)
+        item_loader.add_xpath('tags', XPATH_POST_TAGS)
         print_f('PARSE LINKS')
         yield item_loader.load_item()
