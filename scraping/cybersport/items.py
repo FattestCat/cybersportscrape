@@ -7,9 +7,9 @@ from scrapy import Item, Field
 
 class Post(Item):
     title = Field()
-    content = Field()
+    # content = Field()
     date = Field()
-    tags = Field()
+    # tags = Field()
     # comments_count = Field()
 
 
