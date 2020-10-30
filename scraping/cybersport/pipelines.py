@@ -10,13 +10,21 @@ from scrapy.exceptions import DropItem
 
 import pymorphy2
 from datetime import datetime
+import requests
+import os
 
 from .util import print_f
 
 morph = pymorphy2.MorphAnalyzer()
 
+USER = os.environ.get('CYBER_DATA_USER')
+PASS = os.environ.get('CYBER_DATA_PASS')
+
+auth = (USER, PASS)
+url = 'http://127.0.0.1:3333/postdata/'
 
 # date_obj = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S%z')
+
 
 class DateChecker:
     def process_item(self, item, spide):
@@ -27,6 +35,7 @@ class DateChecker:
         except KeyError:
             raise DropItem('Post has no date')
         return item
+
 
 class DefaulValueSetter:
     def process_item(self, item, spider):
@@ -45,6 +54,12 @@ class DataCleaner:
                 print_f('CHEKINKG FIELDS')
                 raise DropItem(f':::::::::Missings {field} field:::::::::::')
         print_f('WE PASSED RAISE')
+        item['content'] = ' '.join(item['content'])
+        adaper = ItemAdapter(item)
+        print_f(f'{USER} {PASS}')
+        response = requests.post(url, data=adaper.asdict(), auth=auth)
+        print_f('ADAPTER ASDICT')
+        print(response)
         return item
 
 
