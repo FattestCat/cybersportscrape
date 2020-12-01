@@ -10,4 +10,4 @@ class PostSerializer(serializers.ModelSerializer):
 class WordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
-        fields = ['id', 'word', 'count']
+        fields = ['id', 'word', 'count', 'tags']
