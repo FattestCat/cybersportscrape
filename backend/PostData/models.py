@@ -37,3 +37,6 @@ class Word(models.Model):
     word = models.CharField(max_length=200)
     count = models.IntegerField(default=0)
     tags = models.ManyToManyField(to=Tag, blank=True)
+
+    class Meta:
+        ordering = ['-count']
