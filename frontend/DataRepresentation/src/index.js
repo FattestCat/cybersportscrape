@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
 //import reportWebVitals from './reportWebVitals';
+import LeftBarChart from './components/LeftBarChart';
 import Post from './components/Post';
 
 ReactDOM.render(
-    <Post />,
+    <LeftBarChart />,
     document.getElementById('root')
 )
 

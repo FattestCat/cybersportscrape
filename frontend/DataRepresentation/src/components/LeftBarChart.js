@@ -1,23 +1,40 @@
-import {useEffect, useRef} from 'react';
-import fetchWord_new from '../utils/fetching';
-
+import {useEffect, useRef, useState} from 'react';
+import fetchWord from '../utils/fetching';
 
 const LeftBarChart = () => {
     const leftChartRef = useRef(null);
+    const [renderedNumberOfWords, setRenderedNumberOfWords] = useState(15);
+    let numberOfWords = 15;
 
+    useEffect(() => fetchWord(leftChartRef, renderedNumberOfWords), [renderedNumberOfWords]);
 
-    useEffect(() => fetchWord_new(leftChartRef, 20), []);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('inside handleSubmit');
+        setRenderedNumberOfWords(numberOfWords);
+    }
 
     return (
         <div>
-            <form>
-                <input type="text" />
-                <input type="submit" value="Submit" />
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    onChange={(e) => {
+                        numberOfWords = parseInt(e.target.value);
+                        console.log(numberOfWords);
+                    }}
+                />
+                <input
+                    type="submit"
+                    value="Go"
+                />
             </form>
-            <canvas ref={leftChartRef}
+            <canvas
+                ref={leftChartRef}
                 id="leftbarchart"
                 aria-label="Left bar chart"
-                role="img" />
+                role="img"
+            />
         </div>
     )
 }

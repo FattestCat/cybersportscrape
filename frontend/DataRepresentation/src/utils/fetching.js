@@ -2,19 +2,23 @@ import Chart from 'chart.js';
 import axios from 'axios';
 
 const URL_WORD_DATA = 'http://localhost:3333/word/';
+let wordChart = null;
 
-const fetchWord_new = (ref, numberOfWords) => {
+const fetchWord = (ref, numberOfWords) => {
     let words = [];
     let counts = [];
     axios.get(URL_WORD_DATA)
         .then(res => {
             console.log(res.data.slice(0, numberOfWords));
+            if (wordChart != null) {
+                wordChart.destroy();
+            }
             const wordFetched = res.data.slice(0, numberOfWords);
             for (const Word of wordFetched) {
                 words.push(Word.word);
                 counts.push(parseInt(Word.count))
             };
-            const wordChart = new Chart(ref.current, {
+            wordChart = new Chart(ref.current, {
                 type: 'bar',
                 data: {
                     labels: words,
@@ -34,4 +38,4 @@ const fetchWord_new = (ref, numberOfWords) => {
         });
 }
 
-export default fetchWord_new;
+export default fetchWord;
