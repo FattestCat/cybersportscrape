@@ -3,8 +3,8 @@ import fetchWord from '../utils/fetching';
 
 const LeftBarChart = () => {
     const leftChartRef = useRef(null);
-    const [renderedNumberOfWords, setRenderedNumberOfWords] = useState(15);
-    let numberOfWords = 15;
+    const [renderedNumberOfWords, setRenderedNumberOfWords] = useState(14);
+    let numberOfWords = 14;
 
     useEffect(() => fetchWord(leftChartRef, renderedNumberOfWords), [renderedNumberOfWords]);
 

@@ -40,7 +40,7 @@ class Cyber(Spider):
             self.count[0] += 1
             yield Request(f'https://cybersport.ru{link}', callback=self.parse_links)
 
-        if next_page and self.count[0] < 31:
+        if next_page and self.count[0] < 81:
             yield Request(f'https://cybersport.ru{next_page}', callback=self.parse)
 
     def parse_links(self, response):

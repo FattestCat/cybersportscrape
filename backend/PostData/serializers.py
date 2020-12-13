@@ -11,3 +11,8 @@ class WordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
         fields = ['id', 'word', 'count', 'tags']
+
+class CleanWordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Word
+        fields = ['id', 'word', 'count', 'tags']

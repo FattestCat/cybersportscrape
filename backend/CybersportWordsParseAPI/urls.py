@@ -8,6 +8,7 @@ from PostData import views
 router = routers.DefaultRouter()
 router.register(r'postdata', views.PostViewSet)
 router.register(r'word', views.WordViewSet)
+router.register(r'cleanword', views.CleanWordViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
