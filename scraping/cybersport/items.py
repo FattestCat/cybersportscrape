@@ -12,8 +12,11 @@ class Post(Item):
     tags = Field()
     # comments_count = Field()
 
+class PostDot(Item):
+    title = Field()
+    content = Field()
+    date = Field()
+    tags = Field()
 
 class CybersportItem(Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
     pass

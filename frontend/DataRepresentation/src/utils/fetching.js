@@ -2,26 +2,29 @@ import Chart from 'chart.js';
 import axios from 'axios';
 //import excludingWords from '../utils/constants/excludingWords';
 
-const URL_WORD_DATA = 'http://localhost:3333/cleanword/';
-let wordChart = null;
+let wordChart = [];
 
-const fetchWord = (ref, numberOfWords) => {
+const fetchWord = (id, ref, numberOfWords, url) => {
     let words = [];
     let counts = [];
-    axios.get(URL_WORD_DATA)
+    //console.log('0.1');
+    axios.get(url)
         .then(res => {
-            if (wordChart != null) {
-                wordChart.destroy();
+            if (wordChart[id] != null) {
+                wordChart[id].destroy();
             }
+            //console.log('0.2');
+            console.log(res.data);
             let counter = 0;
-            const wordFetched = res.data;
+            const wordFetched = res.data.results;
             while (words.length < numberOfWords) {
                 console.log(wordFetched[counter].word);
                 words.push(wordFetched[counter].word);
                 counts.push(parseInt(wordFetched[counter].count));
                 counter += 1;
             }
-            wordChart = new Chart(ref.current, {
+            //console.log('0.3');
+            wordChart[id] = new Chart(ref.current, {
                 type: 'bar',
                 data: {
                     labels: words,

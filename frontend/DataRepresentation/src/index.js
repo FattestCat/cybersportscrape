@@ -4,11 +4,17 @@ import './index.css';
 //import App from './App';
 //import reportWebVitals from './reportWebVitals';
 import LeftBarChart from './components/LeftBarChart';
-import Post from './components/Post';
+import RightBarChart from './components/RightBarChart';
+//import Post from './components/Post';
 
 ReactDOM.render(
     <LeftBarChart />,
-    document.getElementById('root')
+    document.getElementById('leftbarchart')
+)
+
+ReactDOM.render(
+    <RightBarChart />,
+    document.getElementById('rightbarchart')
 )
 
 // ReactDOM.render(

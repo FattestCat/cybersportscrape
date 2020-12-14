@@ -6,10 +6,13 @@ import json
 
 from .xpaths import *
 from ..items import Post
-from ..pipelines import (DateChecker,
-                        DefaulValueSetter,
+from ..pipelines import (
+                        DateChecker,
+                        DefaultValueSetter,
                         DataCleaner,
-                        WordsNormilizer)
+                        WordsNormilizer,
+                        DataSenderForPost,
+                        )
 from ..util import print_f
 
 class Cyber(Spider):
@@ -17,15 +20,16 @@ class Cyber(Spider):
     custom_settings = {
         "ITEM_PIPELINES": {
             DateChecker: 90,
-            DefaulValueSetter: 100,
+            DefaultValueSetter: 100,
             DataCleaner: 200,
+            DataSenderForPost: 250,
             WordsNormilizer: 300,
         }
     }
 
     count = [0]
     name = 'cyber'
-    allower_domains = ['cybersport.ru']
+    allowed_domains = ['cybersport.ru']
 
     def start_requests(self):
         yield Request('https://cybersport.ru/news/page/2', callback=self.parse)

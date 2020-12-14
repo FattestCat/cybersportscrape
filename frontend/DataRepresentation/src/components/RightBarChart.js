@@ -1,14 +1,15 @@
+
 import {useEffect, useRef, useState} from 'react';
 import fetchWord from '../utils/fetching';
 
-const URL_WORD_DATA = 'http://localhost:3333/cleanword/';
+const URL_WORD_DOT_DATA = 'http://localhost:3333/cleanworddot/';
 
-const LeftBarChart = () => {
-    const leftChartRef = useRef(null);
+const RightBarChart = () => {
+    const rightChartRef = useRef(null);
     const [renderedNumberOfWords, setRenderedNumberOfWords] = useState(14);
     let numberOfWords = 14;
 
-    useEffect(() => fetchWord(0, leftChartRef, renderedNumberOfWords, URL_WORD_DATA), [renderedNumberOfWords]);
+    useEffect(() => fetchWord(1, rightChartRef, renderedNumberOfWords, URL_WORD_DOT_DATA), [renderedNumberOfWords]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,13 +33,13 @@ const LeftBarChart = () => {
                 />
             </form>
             <canvas
-                ref={leftChartRef}
-                id="leftbarchart"
-                aria-label="Left bar chart"
+                ref={rightChartRef}
+                id="rightbarchart"
+                aria-label="Right bar chart"
                 role="img"
             />
         </div>
     )
 }
 
-export default LeftBarChart;
+export default RightBarChart;
